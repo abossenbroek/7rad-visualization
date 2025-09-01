@@ -2,7 +2,7 @@
 authors = [{name = "Anton Bossenbroek", email = "anton@bosenbroek.photo"},
             {name = "Manon Jacquin", email = "hello@manonjacquin.com"}]
 dependencies = ["geopandas==1.1.1"]
-name = "7rad-viz"
+name = "seven-rad-viz"
 requires-python = ">= 3.12,<3.13"
 version = "0.1.1"
 
@@ -30,7 +30,7 @@ hatchling = "==1.27.0"
 # cuda = "12.6"
 
 [tool.pixi.pypi-dependencies]
-7rad-viz = { path = ".", editable = true }
+seven-rad-viz = { path = ".", editable = true }
 
 [tool.pixi.feature.py312.dependencies]
 python = {version="~=3.12.0", channel="conda-forge"}
@@ -56,7 +56,7 @@ hatchling = ">=1.27.0,<2"
 # Enable specific rules for documentation
 target-version = "py312"
 line-length = 88
-src = ["7rad-viz",  "test"]
+src = ["seven-rad-viz",  "test"]
 
 [tool.ruff.lint]
 select = ["D", "D100", "D101", "D102", "D103", "D104", "D105", "D106",
