@@ -43,13 +43,11 @@ python = {version="~=3.12.0", channel="conda-forge"}
 #torchvision = ">=0.21.0,<0.22"
 rasterio = ">=1.4.3,<2"
 geopandas = ">=1.1.1,<2"
-pytest = "==8.3.5"
 hatchling = ">=1.27.0,<2"
 
 [tool.pixi.package.run-dependencies]
 rasterio = ">=1.4.3,<2"
 geopandas = ">=1.1.1,<2"
-pytest = "==8.3.5"
 hatchling = ">=1.27.0,<2"
 
 [tool.pixi.tasks]
@@ -75,8 +73,10 @@ quote-style = "double"
 first_party = ["src", "test"]
 
 [tool.pixi.feature.dev.dependencies]
-pytest= ">=8.3.5,<8.4"
+pytest = ">=8.3.5,<9"
 pre-commit = {version="~=4.1.0", channel="conda-forge"}
+ruff = ">=0.12.11,<0.13"
+usort = ">=1.0.8.post1,<2"
 
 [tool.pixi.feature.dev.tasks]
 "py.test" = { cmd = "py.test tests --exitfirst", description = "Run tests" }
