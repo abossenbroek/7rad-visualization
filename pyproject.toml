@@ -1,8 +1,8 @@
 [project]
 authors = [{name = "Anton Bossenbroek", email = "anton@bosenbroek.photo"},
-            {name = "Manon Jacquin", email = "hello@manonjacquin.com"}]
+            {name = "Manon Jacquin", email = "manon@bossenbroek.photo"}]
 dependencies = ["geopandas==1.1.1"]
-name = "seven-rad-viz"
+name = "dark-light-nerf"
 requires-python = ">= 3.12,<3.13"
 version = "0.1.1"
 
@@ -56,7 +56,7 @@ hatchling = ">=1.27.0,<2"
 # Enable specific rules for documentation
 target-version = "py312"
 line-length = 88
-src = ["seven-rad-viz",  "test"]
+src = ["dark-light-nerf",  "test"]
 
 [tool.ruff.lint]
 select = ["D", "D100", "D101", "D102", "D103", "D104", "D105", "D106",
