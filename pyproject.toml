@@ -1,0 +1,87 @@
+[project]
+authors = [{name = "Anton Bossenbroek", email = "anton@bosenbroek.photo"},
+            {name = "Manon Jacquin", email = "manon@bossenbroek.photo"}]
+dependencies = ["geopandas==1.1.1"]
+name = "dark-light-nerf"
+requires-python = ">= 3.12,<3.13"
+version = "0.1.1"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.workspace]
+preview = ["pixi-build"]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[tool.pixi.package.build]
+backend = { name = "pixi-build-python", version = "*" }
+channels = [
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+]
+
+[tool.pixi.package.host-dependencies]
+hatchling = "==1.27.0"
+
+# For now we are leaving conda out as we don't require any GPU or NN
+# [tool.pixi.system-requirements]
+# cuda = "12.6"
+
+[tool.pixi.pypi-dependencies]
+seven-rad-viz = { path = ".", editable = true }
+
+[tool.pixi.feature.py312.dependencies]
+python = {version="~=3.12.0", channel="conda-forge"}
+
+[tool.pixi.dependencies]
+#cuda-compiler = { version = "12.6.*", channel = "conda-forge" }
+#cuda-toolkit = { version = "12.6.*", channel = "conda-forge" }
+#pytorch-gpu = ">=2.6.0,<2.7.0"
+#cuda-version = "12.6.*"
+#torchvision = ">=0.21.0,<0.22"
+rasterio = ">=1.4.3,<2"
+geopandas = ">=1.1.1,<2"
+hatchling = ">=1.27.0,<2"
+
+[tool.pixi.package.run-dependencies]
+rasterio = ">=1.4.3,<2"
+geopandas = ">=1.1.1,<2"
+hatchling = ">=1.27.0,<2"
+
+[tool.pixi.tasks]
+
+[tool.ruff]
+# Enable specific rules for documentation
+target-version = "py312"
+line-length = 88
+src = ["dark-light-nerf",  "test"]
+
+[tool.ruff.lint]
+select = ["D", "D100", "D101", "D102", "D103", "D104", "D105", "D106",
+  "D107", "S", "B", "F403", "ANN", "G", "T20", "PT", "SIM", "ARG", "I", "C90",
+  "PD", "N", "E", "W", "PLE", "PLR", "RUF"]
+ignore = ["D203", "D212"]
+per-file-ignores = {"tests/*" = ["S101", "ANN"]}
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "double"
+
+[tool.usort.known]
+first_party = ["src", "test"]
+
+[tool.pixi.feature.dev.dependencies]
+pytest = ">=8.3.5,<9"
+pre-commit = {version="~=4.1.0", channel="conda-forge"}
+ruff = ">=0.12.11,<0.13"
+usort = ">=1.0.8.post1,<2"
+
+[tool.pixi.feature.dev.tasks]
+"py.test" = { cmd = "py.test tests --exitfirst", description = "Run tests" }
+pre-commit = { cmd = "pre-commit run", description = "Run pre-commit hooks on specific files" }
+
+[tool.pixi.environments]
+default = { features = ["py312"], solve-group="default" }
+dev = { features = ["dev", "py312"], solve-group="default" }
